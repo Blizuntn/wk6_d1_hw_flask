@@ -1,6 +1,44 @@
 {% extends './layout.html' %}
 {% block content %}
 <div class="container">
-    <h1>Home Page</h1>
+    <h1>Big Mike Dealership</h1>
+    <form action="http://127.0.0.1:5000/api/car_update" method="POST" class="form-inline mt-5">
+        <div class="form-group w-100 mb-3">
+          <label for="carMakeInput" class="makeLabel mb-1">Make</label>
+          <input type="text" class="form-control w-100" name="carMakeInput" id="carMakeInput" placeholder="Make of vehicle">
+        </div>
+        <div class="form-group w-100 mb-3">
+          <label for="carModelInput" class="modelLable mb-1">Model</label>
+          <input type="text" class="form-control w-100" name="carModelInput" id="carModelInput" placeholder="Model of vehicle">
+        </div>
+        <div class="form-group w-100 mb-3">
+            <label for="carYearInput" class="yearLable mb-1">Year</label>
+            <input type="text" class="form-control w-100" name="carYearInput" id="carYearInput" placeholder="Year of vehicle">
+        </div>
+        <div class="form-group w-100 mb-3">
+            <label for="carColorInput" class="colorLabel mb-1">Color</label>
+            <input type="text" class="form-control w-100" name="carColorInput" id="carColorInput" placeholder="Color of vehicle">
+        </div>
+        <div class="form-group w-100 mb-3">
+            <label for="carPriceInput" class="priceLabel mb-1">Price</label>
+            <input type="text" class="form-control w-100" name="carPriceInput" id="formGroupExampleInput" placeholder="Price of vehicle">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Car</button>
+      </form>
+      {% for car in cars %}
+
+      <div class="card mb-2">
+        <div class="card-body">
+            <p class="make mb-0"> {{ car.make }}</p>
+            <p class="model mb-0"> {{ car.model }}</p>
+            <p class="year mb-0"> {{ car.year }}</p>
+            <p class="color mb-0"> {{ car.color }}</p>
+            <p class="price mb-0"> ${{  car.price }}</p>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end">
+        <span>{{ car.date_created }}</span>
+    </div>
+    {% endfor %}
 </div>
 {% endblock content%}
