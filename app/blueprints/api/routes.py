@@ -1,7 +1,8 @@
-from flask import jsonify, request, redirect
+from flask import jsonify, request, redirect, flash
 from . import bp as app
 from app.blueprints.main.models import Car
 from app import db
+from flask_login import current_user
 
 
 
@@ -13,11 +14,14 @@ def car_update():
     yearInput = request.form["carYearInput"]
     colorInput = request.form["carColorInput"]
     priceInput = request.form["carPriceInput"]
-    user = 1
+    
+    user = current_user.id
     
 
     new_car = Car(make=carMakeInput, model=modelInput, year=yearInput, color=colorInput, price=priceInput, user_id=user)
     db.session.add(new_car)
     db.session.commit()
+    
+    flash("New car add successfully", "success")
     
     return  redirect("http://127.0.0.1:5000")

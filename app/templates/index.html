@@ -2,6 +2,9 @@
 {% block content %}
 <div class="container">
     <h1>Big Mike Dealership</h1>
+    {% if current_user.is_authenticated %}
+        <p> Welcome to Big Mike Dealership</p>
+    {% endif %}
     <form action="http://127.0.0.1:5000/api/car_update" method="POST" class="form-inline mt-5">
         <div class="form-group w-100 mb-3">
           <label for="carMakeInput" class="makeLabel mb-1">Make</label>
